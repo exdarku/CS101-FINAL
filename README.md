@@ -4,7 +4,7 @@
 
 ### Codebase
 
-####TO DOs
+#### TO DOs
 - [x] Make barebones application working
 - [x] User can set a nickname
 - [x] Timer for next task
