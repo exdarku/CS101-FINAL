@@ -15,12 +15,12 @@
 - [ ] See the history of the user's usage
 
 #### Changelog 
-**Commit** `PlaceholderText`
+**Commit** `32b0745`
 - Base app completed
 
 
 ### Documentation
-####TO DOs
+#### TO DOs
 - [ ] Start the Documentation
 #### Changelog 
 Nothing here yet!
