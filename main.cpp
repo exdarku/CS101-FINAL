@@ -4,6 +4,12 @@
 #include <map>
 #include "include/tsl/ordered_map.h" // For ordered list
 #include <cstdlib>
+#ifdef LINUX
+#include <unistd.h>
+#endif
+#ifdef _WIN32
+#include <windows.h>
+#endif
 
 
 
@@ -11,22 +17,21 @@
 std::string appName = "Study Buddy"; // App Name
 
 void cpsleep(int time) {
-    #ifdef WINDOWS
-    sleep(time);
-    #else
-    // Assume POSIX
-    sleep(time);
-    #endif
+#ifdef LINUX
+    usleep(time * 1000);   // usleep takes sleep time in us (1 millionth of a second)
+#endif
+#ifdef _WIN32
+    Sleep(time * 1000);
+#endif
 };
-
 
 void clear()
 {
-#ifdef WINDOWS
+#ifdef _WIN32
     std::system("cls");
 #else
     // Assume POSIX
-    std::system ("clear");
+    std::system("clear");
 #endif
 }
 
