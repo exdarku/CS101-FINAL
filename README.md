@@ -18,6 +18,12 @@
 **Commit** `32b0745`
 - Base app completed
 
+**Commit** `3c4a920`
+- Fixed cross platform compatibility using `#ifdef_WIN32` and `#ifdef_LINUX` 
+
+**Commit** `721f1c8`
+- Added more comments for easier readability
+
 
 ### Documentation
 #### TO DOs
