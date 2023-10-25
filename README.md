@@ -1,5 +1,5 @@
 ## CS101L - Summative Assessment Task
-> Ma'am Cherry, love ka daw ni Jovan Morden
+> Ma'am Cherry, love ka daw ni Jovan Morden, Pepper Piccio, Laurence Lesmoras
 
 
 ### Codebase
