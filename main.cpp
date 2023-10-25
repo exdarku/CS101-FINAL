@@ -91,7 +91,6 @@ public:
                 std::cin >> taskDuration; 
                 std::cin.ignore();
                 todo[taskName] = taskDuration;
-                currentTask = currentTask + 1;
             };  
         };
     };
