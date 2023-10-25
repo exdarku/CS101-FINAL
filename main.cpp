@@ -6,11 +6,10 @@
 #include <cstdlib>
 
 
-
 const std::string appName = "Study Buddy"; // App Name
 
 
-void cpsleep(int time) {
+void cpsleep(int time) { 
     #ifdef WINDOWS
     sleep(time);
     #else
@@ -26,7 +25,7 @@ void clear()
     std::system("cls");
 #else
     // Assume POSIX
-    std::system ("clear");
+    std::system("clear");
 #endif
 }
 
@@ -42,10 +41,11 @@ public:
     }
     void setUsername(std::string name){
         username = name;
-
     };
 };
 User loggedInUser = User("None");
+
+
 
 class App { // Main App Class
 private:
@@ -53,16 +53,15 @@ private:
     int taskDuration;
     tsl::ordered_map<std::string, int> todo;
 public:
-    void header() {
-    clear();
-    std::cout << "=========================================================================" << std::endl;
-    std::cout << rang::fg::cyan << rang::style::bold << appName << rang::fg::reset << rang::style::reset << std::endl;
-    std::cout << "=========================================================================" << std::endl;
+    void header() { 
+        clear();
+        std::cout << "=========================================================================" << std::endl;
+        std::cout << rang::fg::cyan << rang::style::bold << appName << rang::fg::reset << rang::style::reset << std::endl;
+        std::cout << "=========================================================================" << std::endl;
     };
 
     void registerScreen() {
         header();
-        std::string pause;
         std::string username;
         std::cout << "Howdy there! Register with your name or nickname to continue!\nNickname: ";
         std::getline(std::cin, username);
@@ -70,7 +69,6 @@ public:
     }
 
     void appMenu() {
-        int currentTask = 1;
         while(true){
             header();
             std::cout << "Welcome to " << appName << ", " << rang::style::bold << rang::fg::green << loggedInUser.getUsername() << rang::style::reset << rang::fg::reset <<"!" << std::endl;
@@ -84,12 +82,12 @@ public:
                 std::cout << "[" << count << "] " << p.first << "   -   " << p.second << " minutes"  << std::endl;
             };
 
-            std::cout << "\n[" << currentTask << "] " << "Task name: "; 
+            std::cout << "\n[" << count + 1 << "] " << "Task name: "; 
             std::getline(std::cin, taskName); // We use getline para mu take ug input with space.
             if (taskName == "done") {
                 break;
             } else { // This will loop until the user types 'done'
-                std::cout << "[" << currentTask << "] " << "How long should this task take? (in minutes): ";
+                std::cout << "[" << count + 1 << "] " << "How long should this task take? (in minutes): ";
                 std::cin >> taskDuration; 
                 std::cin.ignore();
                 todo[taskName] = taskDuration;
@@ -127,8 +125,6 @@ public:
     };
 };
 App AppInstance; // Initializes the App class
-
-
 
 int main() {
     AppInstance.registerScreen();

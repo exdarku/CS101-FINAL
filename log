@@ -1,0 +1,90 @@
+[33mcommit 1849fcf6286beaf23af7e87ce17969acc21f8133[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Laurence Lesmoras <llesmoras@proton.me>
+Date:   Wed Oct 25 12:04:12 2023 +0800
+
+    Fix commit
+
+[33mcommit 82a19cf6d223b471375e72e1153c46b8104accc5[m
+Author: Jhouvann <jvanmorden@gmail.com>
+Date:   Wed Oct 25 12:00:42 2023 +0800
+
+    Initial Commit: Joban
+
+[33mcommit 1e7f8bc76333adc9503ab0e91570b4026cbe2ff9[m
+Author: Laurence <exdarku@gmail.com>
+Date:   Tue Oct 24 23:11:16 2023 +0800
+
+    Updated README
+
+[33mcommit 721f1c8ca0d438d917b3999cbe554cf1b11c2ccc[m
+Author: Laurence <exdarku@gmail.com>
+Date:   Tue Oct 24 23:08:48 2023 +0800
+
+    Added comments for guide
+
+[33mcommit 3c4a920fa1ee04d492d947caf36576a9fdcc7607[m
+Author: Laurence <exdarku@gmail.com>
+Date:   Tue Oct 24 22:59:14 2023 +0800
+
+    Fixed cross platform compability
+
+[33mcommit bc83a346a693a54453468a803da1e13808ea0141[m
+Author: Laur <47197960+exdarku@users.noreply.github.com>
+Date:   Sun Oct 15 01:07:15 2023 +0800
+
+    Update README.md
+
+[33mcommit c688936e8379264fe456ce58282bae389282fce1[m
+Author: Laur <47197960+exdarku@users.noreply.github.com>
+Date:   Sun Oct 15 01:06:49 2023 +0800
+
+    Updated README
+
+[33mcommit 32b0745ffae8707d296ca7541c3ba78c89b02c44[m
+Author: Laurence Lesmoras <llesmoras@proton.me>
+Date:   Sun Oct 15 01:04:41 2023 +0800
+
+    Base app completed
+
+[33mcommit 1db52d33271c89884af0c9c8033f74b8aa54220e[m
+Merge: 382ba92 66a84ef
+Author: Laurence <exdarku@gmail.com>
+Date:   Sat Oct 14 00:49:57 2023 +0800
+
+    Merge branch 'master' of https://github.com/exdarku/CS101-FINAL
+
+[33mcommit 382ba927806848062acb228ab21f669a7e6cd3b5[m
+Author: Laurence <exdarku@gmail.com>
+Date:   Sat Oct 14 00:49:24 2023 +0800
+
+    Fixed rang issue in windows
+
+[33mcommit 66a84ef9f3a76727cafef4d08271b693affe6be3[m
+Author: Laur <47197960+exdarku@users.noreply.github.com>
+Date:   Fri Oct 13 22:00:06 2023 +0800
+
+    Update README.md
+
+[33mcommit 69068cc8f5395027aa6d81bb3fd1f917b2abd880[m
+Author: Laurence Lesmoras <llesmoras@proton.me>
+Date:   Fri Oct 13 20:06:55 2023 +0800
+
+    Added rang, ordered_map, also transformed into OOP
+
+[33mcommit 273cfb7cf44eeb9bebaf4512ea8e6bf356a9b298[m
+Author: Laurence Lesmoras <llesmoras@proton.me>
+Date:   Wed Oct 11 23:03:44 2023 +0800
+
+    Added Compile and Run cr.py
+
+[33mcommit dc200c220f33ea74c90701f45449777d48d40694[m
+Author: Laurence Lesmoras <llesmoras@proton.me>
+Date:   Wed Oct 11 20:48:48 2023 +0800
+
+    Added a love letter to maam cherry
+
+[33mcommit 41262c3137aa38e5643e84db1758b24ecf286dad[m
+Author: Laurence Lesmoras <llesmoras@proton.me>
+Date:   Wed Oct 11 20:46:25 2023 +0800
+
+    First Commit
