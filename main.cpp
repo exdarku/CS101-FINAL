@@ -1,7 +1,7 @@
-#include "include/rang.hpp"
+#include "include/rang.hpp" //color
 #include <iostream>
 #include <string>
-#include <map>
+#include <map> //map
 #include "include/tsl/ordered_map.h" // For ordered list
 #include <cstdlib>
 
@@ -10,7 +10,7 @@
 const std::string appName = "Study Buddy"; // App Name
 
 
-void cpsleep(int time) {
+void cpsleep(int time) { // for cross platform
     #ifdef WINDOWS
     sleep(time);
     #else
@@ -20,7 +20,7 @@ void cpsleep(int time) {
 };
 
 
-void clear()
+void clear()  // for cross platform
 {
 #ifdef WINDOWS
     std::system("cls");
@@ -53,14 +53,14 @@ private:
     int taskDuration;
     tsl::ordered_map<std::string, int> todo;
 public:
-    void header() {
-    clear();
+    void header() { // Function ni siya
+    clear();    
     std::cout << "=========================================================================" << std::endl;
     std::cout << rang::fg::cyan << rang::style::bold << appName << rang::fg::reset << rang::style::reset << std::endl;
     std::cout << "=========================================================================" << std::endl;
     };
 
-    void registerScreen() {
+    void registerScreen() { //function ni siya
         header();
         std::string pause;
         std::string username;
@@ -69,7 +69,7 @@ public:
         loggedInUser.setUsername(username);
     }
 
-    void appMenu() {
+    void appMenu() { // function ni siya
         int currentTask = 1;
         while(true){
             header();
@@ -78,7 +78,7 @@ public:
             std::cout << "Don't forget to type 'done' in the task name to proceed!" << std::endl;
             std::cout << "=========================================================================" << std::endl;
             std::cout << "Current Task List: \n" << std::endl;
-            int count = 0;
+            int count = 0; // numbers for task
             for ( const auto &p : todo){
                 count = count + 1;
                 std::cout << "[" << count << "] " << p.first << "   -   " << p.second << " minutes"  << std::endl;
@@ -100,8 +100,8 @@ public:
 
     void appCountdownScreen() {
         header();
-        int pause = 0;
-        int count = 0;
+        int pause = 0; //for pause purposes
+        int count = 0; //for user
         std::cout << "Yipee! All tasks are now in queue! type 'go' and press enter to start with your tasks!\n" << std::endl;
         for(const auto &p : todo){
             count = count + 1;
@@ -110,10 +110,10 @@ public:
         std::cout << "=========================================================================" << std::endl;
         std::cin >> pause;
         // Start the queue
-        int loopcount = 0;
+        int loopcount = 0; // other variable for count
         for(const auto &p : todo){
             loopcount = loopcount + 1;
-            int currentTaskDuration = p.second * 60;
+            int currentTaskDuration = p.second * 60; // convert minutes to seconds
             while(true){
                 header();
                 std::cout << "[" << loopcount << "] " << p.first << "   -   " << currentTaskDuration << " seconds \n";
