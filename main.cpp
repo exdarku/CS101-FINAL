@@ -1,41 +1,31 @@
-/*
-StudyBuddy
-Created by: Laurence Lesmoras, Frances Piccio, Jouvann Morden
-For CS101L Final Output
-*/
-
 #include "include/rang.hpp"
 #include <iostream>
 #include <string>
 #include <map>
 #include "include/tsl/ordered_map.h" // For ordered list
 #include <cstdlib>
-#ifdef LINUX
-#include <unistd.h>
-#endif
-#ifdef _WIN32
-#include <windows.h>
-#endif
 
 
-std::string appName = "Study Buddy"; // App Name
 
-void cpsleep(int time) { // Cross platform sleep function
-#ifdef LINUX
-    usleep(time * 1000);   // usleep takes sleep time in us (1 millionth of a second)
-#endif
-#ifdef _WIN32
-    Sleep(time * 1000);
-#endif
+constexpr std::string appName = "Study Buddy"; // App Name
+
+void cpsleep(int time) {
+    #ifdef WINDOWS
+    sleep(time);
+    #else
+    // Assume POSIX
+    sleep(time);
+    #endif
 };
 
-void clear() // Cross platform clear function
+
+void clear()
 {
-#ifdef _WIN32
+#ifdef WINDOWS
     std::system("cls");
 #else
     // Assume POSIX
-    std::system("clear");
+    std::system ("clear");
 #endif
 }
 
@@ -54,7 +44,7 @@ public:
 
     };
 };
-User loggedInUser = User("None"); // Initializes initial user object
+User loggedInUser = User("None");
 
 class App { // Main App Class
 private:
@@ -62,14 +52,14 @@ private:
     int taskDuration;
     tsl::ordered_map<std::string, int> todo;
 public:
-    void header() { // Header Screen
+    void header() {
     clear();
     std::cout << "=========================================================================" << std::endl;
     std::cout << rang::fg::cyan << rang::style::bold << appName << rang::fg::reset << rang::style::reset << std::endl;
     std::cout << "=========================================================================" << std::endl;
     };
 
-    void registerScreen() { // Register Screen
+    void registerScreen() {
         header();
         std::string pause;
         std::string username;
@@ -78,7 +68,7 @@ public:
         loggedInUser.setUsername(username);
     }
 
-    void appMenu() { // App Menu Screen
+    void appMenu() {
         int currentTask = 1;
         while(true){
             header();
@@ -88,22 +78,22 @@ public:
             std::cout << "=========================================================================" << std::endl;
             std::cout << "Current Task List: \n" << std::endl;
             int count = 0;
-            for ( const auto &p : todo){ // For loop for the map, will iterate on each item.
+            for ( const auto &p : todo){
                 count = count + 1;
-                std::cout << "[" << count << "] " << p.first << "   -   " << p.second << " minutes"  << std::endl; // Will print out taskName - taskDuration
+                std::cout << "[" << count << "] " << p.first << "   -   " << p.second << " minutes"  << std::endl;
             };
 
             std::cout << "\n[" << currentTask << "] " << "Task name: "; 
-            std::getline(std::cin, taskName); // We use getline so that the user can input with space
-            if (taskName == "done") { 
-                break; // When user types done, while(true) loop will end, going to AppCountdownScreen
+            std::getline(std::cin, taskName); // We use getline para mu take ug input with space.
+            if (taskName == "done") {
+                break;
             } else { // This will loop until the user types 'done'
                 std::cout << "[" << currentTask << "] " << "How long should this task take? (in minutes): ";
                 std::cin >> taskDuration; 
                 std::cin.ignore();
                 todo[taskName] = taskDuration;
                 currentTask = currentTask + 1;
-            };
+            };  
         };
     };
 
@@ -111,7 +101,6 @@ public:
         header();
         int pause = 0;
         int count = 0;
-        // Shows the confirmation screen before starting the tasks
         std::cout << "Yipee! All tasks are now in queue! type 'go' and press enter to start with your tasks!\n" << std::endl;
         for(const auto &p : todo){
             count = count + 1;
@@ -119,7 +108,7 @@ public:
         };
         std::cout << "=========================================================================" << std::endl;
         std::cin >> pause;
-        // Starts the queue
+        // Start the queue
         int loopcount = 0;
         for(const auto &p : todo){
             loopcount = loopcount + 1;
@@ -139,7 +128,8 @@ public:
 App AppInstance; // Initializes the App class
 
 
-int main() { // Runs the app flow
+
+int main() {
     AppInstance.registerScreen();
     AppInstance.appMenu();
     AppInstance.appCountdownScreen();
