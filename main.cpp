@@ -89,11 +89,20 @@ public:
             if (taskName == "done") {
                 break;
             } else { // This will loop until the user types 'done'
+            try { // exception handling tama ba? ga gana man pero dili mu error HAHAHAHAH
                 std::cout << "[" << currentTask << "] " << "How long should this task take? (in minutes): ";
                 std::cin >> taskDuration; 
+            if  (std::cin.fail()){
+                throw std::invalid_argument("");
+            }
                 std::cin.ignore();
                 todo[taskName] = taskDuration;
                 currentTask = currentTask + 1;
+            }
+            catch (const std::exception& e) {
+            std::cin.clear();  
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+        }
             };  
         };
     };
