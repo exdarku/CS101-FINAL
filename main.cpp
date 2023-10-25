@@ -7,7 +7,8 @@
 
 
 
-constexpr std::string appName = "Study Buddy"; // App Name
+const std::string appName = "Study Buddy"; // App Name
+
 
 void cpsleep(int time) {
     #ifdef WINDOWS
@@ -29,7 +30,7 @@ void clear()
 #endif
 }
 
-class User { // User object
+class User { // User object | Setter/Getter
 private:
     std::string username;
 public:
