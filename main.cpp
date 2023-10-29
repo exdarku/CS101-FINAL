@@ -1,14 +1,22 @@
-#include "include/rang.hpp"
+/*
+StudyBuddy
+Developed by Code Buddy
+Frances Jennifer Piccio
+Jhouvann Morden
+Laurence Lesmoras
+
+For CS101 Final Assessment
+*/
+
+#include "include/rang.hpp" // Header for colors
 #include <iostream>
 #include <string>
-#include <map>
-#include "include/tsl/ordered_map.h" // For ordered list
+#include "include/tsl/ordered_map.h" // Header for ordered map
 #include <cstdlib>
-#ifdef LINUX
-#include <unistd.h>
-#endif
 #ifdef _WIN32
 #include <windows.h>
+#else
+#include <unistd.h>
 #endif
 
 
@@ -16,22 +24,21 @@
 
 std::string appName = "Study Buddy"; // App Name
 
-void cpsleep(int time) {
-#ifdef LINUX
-    usleep(time * 1000);   // usleep takes sleep time in us (1 millionth of a second)
-#endif
+void cpsleep(int time) { // Cross platform sleep function
 #ifdef _WIN32
-    Sleep(time * 1000);
+    Sleep(time);
+#else
+    // Assume UNIX/LINUX
+    sleep(time); 
 #endif
 };
 
 
-void clear()
-{
+void clear() { // Cross platform clear screen function
 #ifdef _WIN32
     std::system("cls");
 #else
-    // Assume POSIX
+    // Assume UNIX/LINUX
     std::system("clear");
 #endif
 }
@@ -50,20 +57,21 @@ public:
         username = name;
     };
 };
-User loggedInUser = User("None");
+User loggedInUser = User("None"); // Initializes the User instance
+
 class App { // Main App Class
 private:
     std::string taskName;
     int taskDuration;
     tsl::ordered_map<std::string, int> todo;
 public:
-    void header() {
+    void header() { // Header Function
     clear();
     std::cout << "=========================================================================" << std::endl;
     std::cout << rang::fg::cyan << rang::style::bold << appName << rang::fg::reset << rang::style::reset << std::endl;
     std::cout << "=========================================================================" << std::endl;
     };
-    void registerScreen() {
+    void registerScreen() { // Register Screen Function
         header();
         std::string pause;
         std::string username;
@@ -71,7 +79,7 @@ public:
         std::getline(std::cin, username);
         loggedInUser.setUsername(username);
     }
-    void appMenu() {
+    void appMenu() { // App Menu Screen Function
         int currentTask = 1;
         while(true){
             header();
@@ -98,7 +106,7 @@ public:
             };
         };
     };
-    void appCountdownScreen() {
+    void appCountdownScreen() { // App Countdown Screen Function
         header();
         int pause = 0;
         int count = 0;
@@ -109,7 +117,7 @@ public:
         };
         std::cout << "=========================================================================" << std::endl;
         std::cin >> pause;
-        // Start the queue
+        // When user presses enter, the queue will start
         int loopcount = 0;
         for(const auto &p : todo){
             loopcount = loopcount + 1;
@@ -123,6 +131,7 @@ public:
                     break;
                 };
             };
+            // We still need to implement encouraging words @Pepper
         };
     };
 };
