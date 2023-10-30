@@ -139,7 +139,7 @@ public:
         header();
         std::string pause;
         int count = 0;
-        std::cout << "Yipee! All tasks are now in the queue! Type 'go' and press enter to start with your tasks!\n" << std::endl;
+        std::cout << "Yipee! All tasks are now in the queue! Press enter to start with your tasks!\n" << std::endl;
         for (const auto &p : todo) {
             count = count + 1;
             std::cout << "[" << count << "] " << p.first << "   -   " << p.second << " minutes" << std::endl;
