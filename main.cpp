@@ -106,10 +106,31 @@ public:
                 break;
             } else { // This will loop until the user types 'done'
                 std::cout << "[" << count + 1 << "] " << "How long should this task take? (in minutes): ";
-                std::cin >> taskDuration;
-                std::cin.ignore();
-                todo[taskName] = taskDuration;
-                currentTask = currentTask + 1;
+               while (true) {
+                    try {
+                        std::string input;
+                        std::cin >> input;
+                        taskDuration = std::stoi(input); 
+                        if (std::cin.fail()) {
+                            std::cin.clear();
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            throw std::runtime_error("");
+                        }
+
+                        std::cin.ignore(); // Clear the newline character from the input buffer
+                        if (taskDuration <= 0) {
+                            throw std::runtime_error("");
+                        }
+                        // If everything is valid, add the task to the todo list
+                        todo[taskName] = taskDuration;
+                        currentTask = currentTask + 1;
+                        break; 
+
+                    } catch (const std::exception& e) {
+                        std::cerr << "Invalid Input. Please enter proper duration in minutes. (Number only) " << std::endl;
+                        std::cout << "[" << count + 1 << "] " << "How long should this task take? (in minutes): ";
+                    }
+                }
             }
         }
     }
@@ -118,7 +139,7 @@ public:
         header();
         std::string pause;
         int count = 0;
-        std::cout << "Yipee! All tasks are now in the queue! Type 'go' and press enter to start with your tasks!\n" << std::endl;
+        std::cout << "Yipee! All tasks are now in the queue! Press enter to start with your tasks!\n" << std::endl;
         for (const auto &p : todo) {
             count = count + 1;
             std::cout << "[" << count << "] " << p.first << "   -   " << p.second << " minutes" << std::endl;
@@ -140,6 +161,7 @@ public:
                     break;
                 }
             }
+        
             // We still need to implement encouraging words @Pepper
         }
     }
@@ -153,19 +175,30 @@ int main() {
     AppInstance.appCountdownScreen();
 
     std::string moreTasks;
-    std::cout << "All tasks are completed. Do you want to add more task? [yes/no]: ";
-    std::cin >> moreTasks;
-    std::cin.ignore();
+    bool validInput = false;
 
-    if (moreTasks == "yes") {
-        AppInstance.clearList();
-        AppInstance.appMenu();
-        AppInstance.appCountdownScreen();
-    } else if (moreTasks == "no") {
-        std::cout << "========================================" << std::endl;
-        std::cout << "Thank you for using" << appName << ", Goodbye!" << std::endl;
-        std::cout << "========================================" << std::endl;
-        exit(0);
+    while (!validInput) {
+        try {
+            std::cout << "All tasks are completed. Do you want to add more tasks? [yes/no]: ";
+            std::cin >> moreTasks;
+            std::cin.ignore(); 
+
+            if (moreTasks == "yes") {
+                AppInstance.clearList();
+                AppInstance.appMenu();
+                AppInstance.appCountdownScreen();
+            } else if (moreTasks == "no") {
+                AppInstance.header();
+                std::cout << "Thank you for using " << appName << ", Goodbye!" << std::endl;
+                validInput = true; 
+                cpsleep(3);
+                exit(0);
+            } else {
+                throw std::runtime_error("Invalid input. Please enter 'yes' or 'no'.");
+            }
+        } catch (const std::exception& e) {
+            std::cerr << "Error: " << e.what() << std::endl;
+        }
     }
 
     return 0;
