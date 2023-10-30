@@ -66,6 +66,11 @@ private:
     tsl::ordered_map<std::string, int> todo;
 
 public:
+
+    void clearList(){
+        todo.clear();
+    }
+
     void header() { // Header Function
         clear();
         std::cout << "=========================================================================" << std::endl;
@@ -148,16 +153,17 @@ int main() {
     AppInstance.appCountdownScreen();
 
     std::string moreTasks;
-    std::cout << "All tasks are completed. Do you want to add more task? [Yes/No]: ";
+    std::cout << "All tasks are completed. Do you want to add more task? [yes/no]: ";
     std::cin >> moreTasks;
     std::cin.ignore();
 
-    if (moreTasks == "Yes") {
+    if (moreTasks == "yes") {
+        AppInstance.clearList();
         AppInstance.appMenu();
         AppInstance.appCountdownScreen();
-    } else if (moreTasks == "No") {
+    } else if (moreTasks == "no") {
         std::cout << "========================================" << std::endl;
-        std::cout << "Thank you for using StudyBuddy! Goodbye!" << std::endl;
+        std::cout << "Thank you for using" << appName << ", Goodbye!" << std::endl;
         std::cout << "========================================" << std::endl;
         exit(0);
     }
