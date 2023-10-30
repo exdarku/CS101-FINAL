@@ -2,33 +2,37 @@
 #include <iostream>
 #include <string>
 #include <map>
-#include "include/tsl/ordered_map.h"
+#include "include/tsl/ordered_map.h" // For ordered list
 #include <cstdlib>
+
+
+
 
 std::string appName = "Study Buddy"; // App Name
 
 void cpsleep(int time) {
-#ifdef WINDOWS
+    #ifdef WINDOWS
     sleep(time);
-#else
+    #else
     // Assume POSIX
     sleep(time);
-#endif
-}
+    #endif
+};
 
-void clear() {
+
+void clear()
+{
 #ifdef WINDOWS
     std::system("cls");
 #else
     // Assume POSIX
-    std::system("clear");
+    std::system ("clear");
 #endif
 }
 
 class User { // User object
 private:
     std::string username;
-
 public:
     User(std::string name) { // Constructor
         username = name;
@@ -36,8 +40,9 @@ public:
     std::string getUsername() {
         return username;
     }
-    void setUsername(std::string name) {
+    void setUsername(std::string name){
         username = name;
+
     };
 };
 User loggedInUser = User("None");
@@ -47,13 +52,12 @@ private:
     std::string taskName;
     int taskDuration;
     tsl::ordered_map<std::string, int> todo;
-
 public:
     void header() {
-        clear();
-        std::cout << "=========================================================================" << std::endl;
-        std::cout << rang::fg::cyan << rang::style::bold << appName << rang::fg::reset << rang::style::reset << std::endl;
-        std::cout << "=========================================================================" << std::endl;
+    clear();
+    std::cout << "=========================================================================" << std::endl;
+    std::cout << rang::fg::cyan << rang::style::bold << appName << rang::fg::reset << rang::style::reset << std::endl;
+    std::cout << "=========================================================================" << std::endl;
     };
 
     void registerScreen() {
@@ -67,26 +71,26 @@ public:
 
     void appMenu() {
         int currentTask = 1;
-        while (true) {
+        while(true){
             header();
-            std::cout << "Welcome to " << appName << ", " << rang::style::bold << rang::fg::green << loggedInUser.getUsername() << rang::style::reset << rang::fg::reset << "!" << std::endl;
+            std::cout << "Welcome to " << appName << ", " << rang::style::bold << rang::fg::green << loggedInUser.getUsername() << rang::style::reset << rang::fg::reset <<"!" << std::endl;
             std::cout << "Enter the tasks you want to do for this session" << std::endl;
             std::cout << "Don't forget to type 'done' in the task name to proceed!" << std::endl;
             std::cout << "=========================================================================" << std::endl;
             std::cout << "Current Task List: \n" << std::endl;
             int count = 0;
-            for (const auto &p : todo) {
+            for ( const auto &p : todo){
                 count = count + 1;
-                std::cout << "[" << count << "] " << p.first << "   -   " << p.second << " minutes" << std::endl;
+                std::cout << "[" << count << "] " << p.first << "   -   " << p.second << " minutes"  << std::endl;
             };
 
-            std::cout << "\n[" << currentTask << "] " << "Task name: ";
+            std::cout << "\n[" << currentTask << "] " << "Task name: "; 
             std::getline(std::cin, taskName); // We use getline para mu take ug input with space.
             if (taskName == "done") {
                 break;
             } else { // This will loop until the user types 'done'
                 std::cout << "[" << currentTask << "] " << "How long should this task take? (in minutes): ";
-                std::cin >> taskDuration;
+                std::cin >> taskDuration; 
                 std::cin.ignore();
                 todo[taskName] = taskDuration;
                 currentTask = currentTask + 1;
@@ -99,49 +103,36 @@ public:
         int pause = 0;
         int count = 0;
         std::cout << "Yipee! All tasks are now in queue! type 'go' and press enter to start with your tasks!\n" << std::endl;
-        for (const auto &p : todo) {
+        for(const auto &p : todo){
             count = count + 1;
-            std::cout << "[" << count << "] " << p.first << "   -   " << p.second << " minutes" << std::endl;
+            std::cout << "[" << count << "] " << p.first << "   -   " << p.second << " minutes"  << std::endl;
         };
         std::cout << "=========================================================================" << std::endl;
-        std::string input;
-        std::cin >> input;
-
-        if (input != "go") {
-            return; // Exit if the user doesn't type 'go'
-        }
-
-        for (const auto &p : todo) {
+        std::cin >> pause;
+        // Start the queue
+        int loopcount = 0;
+        for(const auto &p : todo){
+            loopcount = loopcount + 1;
             int currentTaskDuration = p.second * 60;
-            while (true) {
+            while(true){
                 header();
-                std::cout << "Task: " << p.first << "   -   " << currentTaskDuration << " seconds \n";
+                std::cout << "[" << loopcount << "] " << p.first << "   -   " << currentTaskDuration << " seconds \n";
                 cpsleep(1);
                 currentTaskDuration = currentTaskDuration - 1;
-                if (currentTaskDuration == 0) {
+                if(currentTaskDuration == 0) {
                     break;
                 };
             };
         };
-
-        // After tasks are complete, ask if the user wants to add more tasks
-        std::string moreTasks;
-        std::cout << "All tasks are completed. Do you want to add more tasks? (yes/no): ";
-        std::cin >> moreTasks;
-        if (moreTasks == "yes") {
-            todo.clear(); // Clear the task list
-            appMenu(); // Return to the app menu
-        } else if (moreTasks == "no") {
-            std::cout << "Thank you for using the program. Goodbye!" << std::endl;
-            exit(0);
-        }
     };
 };
 App AppInstance; // Initializes the App class
+
+
 
 int main() {
     AppInstance.registerScreen();
     AppInstance.appMenu();
     AppInstance.appCountdownScreen();
     return 0;
-}
+};
