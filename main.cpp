@@ -26,7 +26,7 @@ std::string appName = "Study Buddy"; // App Name
 
 void cpsleep(int time) { // Cross platform sleep function
 #ifdef _WIN32
-    Sleep(time);
+    Sleep(time * 1000);
 #else
     // Assume UNIX/LINUX
     sleep(time); 
