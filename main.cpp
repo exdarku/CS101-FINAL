@@ -127,7 +127,7 @@ public:
                         break; 
 
                     } catch (const std::exception& e) {
-                        std::cerr << "Invalid Input. Please Enter a Proper Duration in Minutes. " << std::endl;
+                        std::cerr << "Invalid Input. Please enter proper duration in minutes. (Number only) " << std::endl;
                         std::cout << "[" << count + 1 << "] " << "How long should this task take? (in minutes): ";
                     }
                 }
