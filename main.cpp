@@ -148,7 +148,7 @@ int main() {
     AppInstance.appCountdownScreen();
 
     std::string moreTasks;
-    std::cout << "All tasks are completed. Do you want to use the program again? [Yes/No]: ";
+    std::cout << "All tasks are completed. Do you want to add more task? [Yes/No]: ";
     std::cin >> moreTasks;
     std::cin.ignore();
 
