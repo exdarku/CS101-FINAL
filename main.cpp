@@ -158,7 +158,7 @@ public:
             int currentTaskDuration = p.second * 60;
             while (true) {
                 header();
-                std::cout << "[" << loopcount << "] " << p.first << "   -   " << currentTaskDuration << " seconds \n";
+                std::cout << "Task: " << p.first << "   -   " << currentTaskDuration << " seconds \n";
                 cpsleep(1);
                 currentTaskDuration = currentTaskDuration - 1;
                 if (currentTaskDuration == 0) {
@@ -171,10 +171,11 @@ public:
                     };
 
                     int ranIndex = rand() % 4;
-                
+                    header();
                     std:: cout << messages[ranIndex];
+                    std:: cout << "\nReturning to tasks after 5 seconds\n";
 
-                    Sleep(5000);  // time_period in seconds
+                    cpsleep(5);  // time_period in seconds
 
                     break;
                 }
