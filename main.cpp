@@ -13,6 +13,10 @@ For CS101 Final Assessment
 #include <string>
 #include "include/tsl/ordered_map.h" // Header for ordered map
 #include <cstdlib>
+#include <array>
+#include <random>
+#include <iterator>
+#include <algorithm>
 #ifdef _WIN32
 #include <windows.h>
 #else
@@ -81,7 +85,7 @@ public:
     void registerScreen() { // Register Screen Function
         header();
         std::string username;
-        std::cout << "Howdy there! Register with your name or nickname to continue!\nNickname: ";
+        std::cout << "Hey friend! Register with your nickname to continue!\nNickname: ";
         std::getline(std::cin, username);
         loggedInUser.setUsername(username);
     }
@@ -91,7 +95,7 @@ public:
         while (true) {
             header();
             std::cout << "Welcome to " << appName << ", " << rang::style::bold << rang::fg::green << loggedInUser.getUsername() << rang::style::reset << rang::fg::reset << "!" << std::endl;
-            std::cout << "Enter the tasks you want to do for this session" << std::endl;
+            std::cout << "Input the tasks you want to work on for this session" << std::endl;
             std::cout << "Don't forget to type 'done' in the task name to proceed!" << std::endl;
             std::cout << "=========================================================================" << std::endl;
             std::cout << "Current Task List: \n" << std::endl;
@@ -105,7 +109,7 @@ public:
             if (taskName == "done") {
                 break;
             } else { // This will loop until the user types 'done'
-                std::cout << "[" << count + 1 << "] " << "How long should this task take? (in minutes): ";
+                std::cout << "[" << count + 1 << "] " << "How long will this task take? (in minutes): ";
                 std::cin >> taskDuration;
                 std::cin.ignore();
                 todo[taskName] = taskDuration;
@@ -118,7 +122,7 @@ public:
         header();
         std::string pause;
         int count = 0;
-        std::cout << "Yipee! All tasks are now in the queue! Type 'go' and press enter to start with your tasks!\n" << std::endl;
+        std::cout << "Yay! All tasks are now in queue! Type 'go' and press enter to start the fun!\n" << std::endl;
         for (const auto &p : todo) {
             count = count + 1;
             std::cout << "[" << count << "] " << p.first << "   -   " << p.second << " minutes" << std::endl;
@@ -137,12 +141,26 @@ public:
                 cpsleep(1);
                 currentTaskDuration = currentTaskDuration - 1;
                 if (currentTaskDuration == 0) {
+
+                    std::string messages[4] {
+                    "Hey, vibe check! here's a star for completing your to-do's!\n" ,
+                    "You're a star! don't forget to take breaks in between tasks!\n" ,
+                    "Hooray! here's a little treat for a job well done!\n",
+                    "Let's go, friend! a productive day is a wonderful day!\n"
+                    };
+
+                    int ranIndex = rand() % 4;
+                
+                    std:: cout << messages[ranIndex];
+
+                    Sleep(5000);  // time_period in seconds
+
                     break;
                 }
             }
-            // We still need to implement encouraging words @Pepper
         }
-    }
+        
+    };
 };
 
 App AppInstance; // Initializes the App class
@@ -153,7 +171,7 @@ int main() {
     AppInstance.appCountdownScreen();
 
     std::string moreTasks;
-    std::cout << "All tasks are completed. Do you want to add more task? [yes/no]: ";
+    std::cout << "All tasks in queue are now completed! Do you want to add more? [yes/no]: ";
     std::cin >> moreTasks;
     std::cin.ignore();
 
@@ -163,7 +181,7 @@ int main() {
         AppInstance.appCountdownScreen();
     } else if (moreTasks == "no") {
         std::cout << "========================================" << std::endl;
-        std::cout << "Thank you for using" << appName << ", Goodbye!" << std::endl;
+        std::cout << "Thank you for using  " << appName << "! Hope to see you soon, friend!!" << std::endl;
         std::cout << "========================================" << std::endl;
         exit(0);
     }
