@@ -34,6 +34,12 @@ void cpsleep(int time) { // Cross platform sleep function
 #endif
 }
 
+void setTitle() { // Cross platform sleep function
+#ifdef _WIN32
+    std::system("title Study Buddy ^| Byte Buddy");
+#endif
+}
+
 void clear() { // Cross platform clear screen function
 #ifdef _WIN32
     std::system("cls");
@@ -76,6 +82,7 @@ public:
     }
 
     void header() { // Header Function
+        setTitle();
         clear();
         std::cout << "=========================================================================" << std::endl;
         std::cout << rang::fg::cyan << rang::style::bold << appName << rang::fg::reset << rang::style::reset << std::endl;
