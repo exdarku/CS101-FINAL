@@ -1,6 +1,6 @@
 /*
 StudyBuddy
-Developed by Code Buddy
+Developed by Byte Buddy
 Frances Jennifer Piccio
 Jhouvann Morden
 Laurence Lesmoras
@@ -109,7 +109,7 @@ public:
             if (taskName == "done") {
                 break;
             } else { // This will loop until the user types 'done'
-                std::cout << "[" << count + 1 << "] " << "How long should this task take? (in minutes): ";
+                std::cout << "[" << count + 1 << "] " << "How long will this task take? (in minutes): ";
                while (true) {
                     try {
                         std::string input;
@@ -206,7 +206,7 @@ int main() {
                 AppInstance.appCountdownScreen();
             } else if (moreTasks == "no") {
                 AppInstance.header();
-                std::cout << "Thank you for using " << appName << ", Goodbye!" << std::endl;
+                std::cout << "Thank you for using " << appName << "! I hope to see you soon, friend!" << std::endl;
                 validInput = true; 
                 cpsleep(3);
                 exit(0);
